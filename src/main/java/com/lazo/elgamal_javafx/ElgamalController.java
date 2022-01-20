@@ -6,13 +6,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 import java.math.BigInteger;
-import java.nio.ByteBuffer;
-import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 
 import static com.lazo.elgamal_javafx.elgamal.Elgamal.elgamalEncryption;
 import static com.lazo.elgamal_javafx.fast_powering_algorithm.FastPoweringAlgorithm.fastPoweringAlgorithm;
-import static com.lazo.elgamal_javafx.utils.LazoUtils.*;
 
 public class ElgamalController {
 

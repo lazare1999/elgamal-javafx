@@ -28,24 +28,34 @@ public class ElgamalController {
     @FXML
     protected void encryptionButton() {
 
-        if (gText ==null || aText ==null || pText==null || mText==null || kText==null)
+        if (gText ==null || gText.getText() ==null ||
+                aText ==null || aText.getText() ==null ||
+                pText==null || pText.getText() ==null ||
+                mText==null || mText.getText() ==null ||
+                kText==null || kText.getText() ==null
+        )
             return;
 
         BigInteger A, g, a, p, m, k;
 
-        g  = new BigInteger(gText.getText());
-        p  = new BigInteger(pText.getText());
-        a  = new BigInteger(aText.getText());
-        k  = new BigInteger(kText.getText());
-        m  = new BigInteger(mText.getText());
+        try {
+            g  = new BigInteger(gText.getText());
+            p  = new BigInteger(pText.getText());
+            a  = new BigInteger(aText.getText());
+            k  = new BigInteger(kText.getText());
+            m  = new BigInteger(mText.getText());
 
-        A = fastPoweringAlgorithm(g, a, p);
+            A = fastPoweringAlgorithm(g, a, p);
 
-        BigInteger[] cc = elgamalEncryption(p, g, A, m, k);
+            BigInteger[] cc = elgamalEncryption(p, g, A, m, k);
 
-        ccGlobal =cc;
+            ccGlobal =cc;
 
-        encryptedText.setText(Arrays.toString(cc));
+            encryptedText.setText(Arrays.toString(cc));
+        } catch (Exception e) {
+            encryptedText.setText("ERROR");
+        }
+
     }
 
     @FXML
@@ -56,14 +66,19 @@ public class ElgamalController {
 
         BigInteger a, p;
 
-        p  = new BigInteger(pText.getText());
-        a  = new BigInteger(aText.getText());
+        try {
+            p  = new BigInteger(pText.getText());
+            a  = new BigInteger(aText.getText());
 
-        if (ccGlobal ==null)
-            return;
+            if (ccGlobal ==null)
+                return;
 
-        var ans = Elgamal.elgamalDecryption(ccGlobal, p, a);
+            var ans = Elgamal.elgamalDecryption(ccGlobal, p, a);
 
-        decryptedText.setText(String.valueOf(ans));
+            decryptedText.setText(String.valueOf(ans));
+        } catch (Exception e) {
+            decryptedText.setText("ERROR");
+        }
+
     }
 }

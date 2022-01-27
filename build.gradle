@@ -56,8 +56,7 @@ jlink {
     }
     jpackage {
         installerOptions = [
-                '--description', project.description,
-                '--copyright', 'Copyrigth 2021-now WALCZAK.IT'
+                '--copyright', 'Copyrigth 2022-now WALCZAK.IT'
         ]
         installerType = project.findProperty('installerType')
         if (installerType == 'msi') {
@@ -68,10 +67,10 @@ jlink {
             ]
         }
         if (installerType == 'pkg') {
-            imageOptions += ['--icon', 'src/main/resources/mia/gui/icon.icns']
+            imageOptions += ['--icon', 'src/main/resources/icon.icns']
         }
         if (installerType in ['deb', 'rpm']) {
-            imageOptions += ['--icon', 'src/main/resources/mia/gui/icon_256x256.png']
+            imageOptions += ['--icon', 'src/main/resources/icon.png']
             installerOptions += [
                     '--linux-menu-group', 'Office',
                     '--linux-shortcut'
@@ -79,7 +78,7 @@ jlink {
         }
         if (installerType == 'deb') {
             installerOptions += [
-                    '--linux-deb-maintainer', 'office@walczak.it'
+                    '--linux-deb-maintainer', 'lazarekvirtia@gmail.com'
             ]
         }
         if (installerType == 'rpm') {
